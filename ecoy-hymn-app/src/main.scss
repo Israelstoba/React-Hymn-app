@@ -1,0 +1,87 @@
+@import 'utility';
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden; /* Prevents scroll wobble */
+  touch-action: manipulation;
+  -webkit-overflow-scrolling: touch;
+  background-color: $clrPrim200;
+  color: $fff;
+}
+
+.home-con {
+  display: grid;
+  place-content: center;
+  width: 100%;
+  height: 100vh;
+  background-color: $clrPrim200;
+  color: $fff;
+
+  .app-logo {
+    max-width: 300px;
+  }
+
+  .btn-con {
+    width: 150px;
+    margin-inline: auto;
+    text-align: center;
+    .open-btn {
+      width: 100%;
+
+      .icon {
+        padding-right: 1rem;
+        color: $clrPrim200;
+      }
+    }
+  }
+}
+
+// Hymn Page Style Rules
+#hymn-wrapper {
+  max-width: 600px;
+  min-height: 100vh;
+  margin-inline: auto;
+  position: relative;
+
+  .header-con {
+    width: 100%;
+    height: 100px;
+    background-color: $clrPrim200;
+    display: flex;
+    justify-content: space-between;
+    padding: $sp1;
+    background-color: $clrPrim100;
+
+    .title {
+      height: auto;
+    }
+  }
+
+  .content-con {
+    max-width: 600px;
+    margin-inline: auto;
+    height: 100%;
+    padding: $sp1;
+  }
+
+  .footer-con {
+    // height: 60px;
+    background-color: $clrPrim100;
+    width: 100%;
+    padding-inline: $sp3;
+    padding-block: $sp1;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
