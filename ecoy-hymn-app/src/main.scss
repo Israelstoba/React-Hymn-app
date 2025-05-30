@@ -35,6 +35,7 @@ body {
     text-align: center;
     .open-btn {
       width: 100%;
+      border-radius: 30px;
 
       .icon {
         padding-right: 1rem;
@@ -55,13 +56,54 @@ body {
     width: 100%;
     height: 100px;
     background-color: $clrPrim200;
-    display: flex;
-    justify-content: space-between;
     padding: $sp1;
     background-color: $clrPrim100;
 
     .title {
       height: auto;
+    }
+
+    .header-con-top {
+      display: flex;
+      justify-content: space-between;
+      padding-right: $sp1;
+      margin-bottom: 1rem;
+    }
+
+    .search-con {
+      width: 100%;
+      min-height: 31px;
+      position: relative;
+
+      .input-field {
+        width: 100%;
+        padding: $sp0;
+        border-radius: $br25;
+        border: none;
+        outline: none;
+        caret-color: $clrSec200;
+        transition: opacity 2s ease;
+        opacity: 1;
+        color: $clrPrim100;
+
+        &::placeholder {
+          color: $clrPrim400;
+        }
+      }
+
+      .search-icon {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 2px;
+        color: $clrSec200;
+        background-color: $clrPrim200;
+        // border: 2px solid $clrPrim100;
+        padding: $sp0;
+        border-radius: $br25;
+        font-size: 0.8rem;
+        cursor: pointer;
+      }
     }
   }
 
@@ -83,5 +125,43 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    .icons {
+      color: $clrSec200;
+    }
+  }
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: $clrPrim100;
+  width: 70%;
+  height: 100%;
+  opacity: 0.9;
+  z-index: 100;
+  padding-top: 6rem;
+  // display: none;
+
+  .exit-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.6rem;
+  }
+
+  .sidebar-list {
+    padding-inline: 1rem;
+
+    .sidebar-links {
+      padding-block: 1rem;
+      border-bottom: 1px solid $clrPrim200;
+
+      .sidebar-link-icons {
+        color: $clrSec200;
+        margin-right: 1rem;
+      }
+    }
   }
 }
