@@ -46,11 +46,14 @@ body {
 }
 
 // Hymn Page Style Rules
+
+#hymn-wrapper > * {
+  flex-shrink: 0;
+}
 #hymn-wrapper {
-  max-width: 600px;
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
-  margin-inline: auto;
-  position: relative;
 
   .header-con {
     width: 100%;
@@ -119,6 +122,7 @@ body {
     margin-inline: auto;
     height: 100%;
     padding: $sp1;
+    flex: 1;
   }
 
   .footer-con {
