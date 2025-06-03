@@ -19,7 +19,8 @@ function Hymn() {
   return (
     <div id="hymn-wrapper">
       <Header onMenuClick={toggleSidebar} />
-      {isSidebarOpen && <Sidebar onClose={closeSidebar} />}
+      <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
+
       <Content />
       <Footer />
     </div>

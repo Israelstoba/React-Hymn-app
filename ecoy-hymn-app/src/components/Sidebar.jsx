@@ -8,7 +8,7 @@ import {
   faHeart,
 } from '@fortawesome/free-solid-svg-icons';
 
-function Sidebar({ onClose }) {
+function Sidebar({ isOpen, onClose }) {
   const sidebarRef = useRef();
 
   useEffect(() => {
@@ -24,7 +24,7 @@ function Sidebar({ onClose }) {
 
   return (
     <div className="sidebar-overlay">
-      <div className="sidebar slide-in" ref={sidebarRef}>
+      <div className={`sidebar ${isOpen ? 'open' : 'closed'}`} ref={sidebarRef}>
         <FontAwesomeIcon
           className="exit-btn"
           icon={faCircleXmark}

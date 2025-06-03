@@ -54,7 +54,7 @@ body {
 
   .header-con {
     width: 100%;
-    height: 100px;
+    height: 120px;
     background-color: $clrPrim200;
     padding: $sp1;
     background-color: $clrPrim100;
@@ -66,25 +66,32 @@ body {
     .header-con-top {
       display: flex;
       justify-content: space-between;
+      align-items: center;
       padding-right: $sp1;
       margin-bottom: 1rem;
+
+      .menu-icon {
+        padding: 0.5rem;
+      }
     }
 
     .search-con {
       width: 100%;
-      min-height: 31px;
+      min-height: 46px;
+      max-height: 46px;
       position: relative;
 
       .input-field {
         width: 100%;
-        padding: $sp0;
+        padding: 14px;
         border-radius: $br25;
         border: none;
         outline: none;
         caret-color: $clrSec200;
         transition: opacity 2s ease;
         opacity: 1;
-        color: $clrPrim100;
+        font-size: 1rem;
+        color: $clrSec100;
 
         &::placeholder {
           color: $clrPrim400;
@@ -99,9 +106,9 @@ body {
         color: $clrSec200;
         background-color: $clrPrim200;
         // border: 2px solid $clrPrim100;
-        padding: $sp0;
-        border-radius: $br25;
-        font-size: 0.8rem;
+        padding: 14px;
+        border-radius: $br50;
+        font-size: 1rem;
         cursor: pointer;
       }
     }
@@ -166,7 +173,10 @@ body {
   }
 }
 
-.sidebar.slide-in {
-  transition: all 0.3s ease;
-  left: 0;
+.sidebar.open {
+  left: 0; /* Slide in */
+}
+
+.sidebar.closed {
+  left: -70%; /* Slide out */
 }

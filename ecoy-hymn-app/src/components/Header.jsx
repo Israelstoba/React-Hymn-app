@@ -28,7 +28,11 @@ function Header({ onMenuClick }) {
     <div className="header-con">
       <div className="header-con-top">
         <h3 className="title">Ecoy Hymnal</h3>
-        <FontAwesomeIcon onClick={onMenuClick} icon={faEllipsisVertical} />
+        <FontAwesomeIcon
+          className="menu-icon"
+          onClick={onMenuClick}
+          icon={faEllipsisVertical}
+        />
       </div>
 
       <div className="search-con">
