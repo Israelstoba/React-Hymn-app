@@ -6,7 +6,7 @@ import {
   faMagnifyingGlass,
 } from '@fortawesome/free-solid-svg-icons';
 
-function Header() {
+function Header({ onMenuClick }) {
   const location = useLocation();
   const [isSearchVisible, setIsSearchVisible] = useState(false);
   const [hasClicked, setHasClicked] = useState(false);
@@ -28,7 +28,7 @@ function Header() {
     <div className="header-con">
       <div className="header-con-top">
         <h3 className="title">Ecoy Hymnal</h3>
-        <FontAwesomeIcon icon={faEllipsisVertical} />
+        <FontAwesomeIcon onClick={onMenuClick} icon={faEllipsisVertical} />
       </div>
 
       <div className="search-con">

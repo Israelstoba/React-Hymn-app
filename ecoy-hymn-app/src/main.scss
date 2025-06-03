@@ -135,14 +135,14 @@ body {
 .sidebar {
   position: fixed;
   top: 0;
-  left: 0;
+  left: -70%;
   background-color: $clrPrim100;
   width: 70%;
   height: 100%;
   opacity: 0.9;
-  z-index: 100;
+  z-index: 1000;
   padding-top: 6rem;
-  // display: none;
+  transition: all 0.3s ease;
 
   .exit-btn {
     position: absolute;
@@ -164,4 +164,9 @@ body {
       }
     }
   }
+}
+
+.sidebar.slide-in {
+  transition: all 0.3s ease;
+  left: 0;
 }
