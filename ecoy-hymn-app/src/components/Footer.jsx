@@ -11,14 +11,12 @@ function Footer() {
   return (
     <div className="footer-con">
       <Link to="/">
-        <FontAwesomeIcon className="icons" icon={faHouseChimney} />
+        <FontAwesomeIcon className="home-icon icons" icon={faHouseChimney} />
       </Link>
       <Link to="/hymn">
         <FontAwesomeIcon className="icons" icon={faMusic} />
       </Link>
-      {/* <Link to="/fav">
-        <FontAwesomeIcon className="icons" icon={faHeart} />
-      </Link> */}
+
       <FontAwesomeIcon className="icons" icon={faHeart} />
       <FontAwesomeIcon className="icons" icon={faPenToSquare} />
     </div>

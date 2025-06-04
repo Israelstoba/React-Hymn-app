@@ -117,12 +117,14 @@ body {
     }
   }
 
-  .content-con {
-    max-width: 600px;
-    margin-inline: auto;
-    height: 100%;
-    padding: $sp1;
-    flex: 1;
+  .hymn-list-con {
+    overflow-y: auto;
+    text-align: center;
+    padding: 1.2rem;
+    height: calc(100vh - 180px);
+
+    // .hymn-list-item {
+    // }
   }
 
   .footer-con {
@@ -138,6 +140,9 @@ body {
     align-items: center;
 
     .icons {
+      color: $clrPrim300;
+    }
+    .home-icon {
       color: $clrSec200;
     }
   }
@@ -150,7 +155,7 @@ body {
   background-color: $clrPrim100;
   width: 70%;
   height: 100%;
-  opacity: 0.9;
+  opacity: 0.98;
   z-index: 1000;
   padding-top: 6rem;
   transition: all 0.3s ease;
@@ -170,7 +175,7 @@ body {
       border-bottom: 1px solid $clrPrim200;
 
       .sidebar-link-icons {
-        color: $clrSec200;
+        color: $clrPrim300;
         margin-right: 1rem;
       }
     }

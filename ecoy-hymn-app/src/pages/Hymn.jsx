@@ -20,7 +20,6 @@ function Hymn() {
     <div id="hymn-wrapper">
       <Header onMenuClick={toggleSidebar} />
       <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
-
       <Content />
       <Footer />
     </div>
