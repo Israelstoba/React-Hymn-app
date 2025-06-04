@@ -119,12 +119,13 @@ body {
 
   .hymn-list-con {
     overflow-y: auto;
-    text-align: center;
-    padding: 1.2rem;
+    padding: 1rem;
     height: calc(100vh - 180px);
 
-    // .hymn-list-item {
-    // }
+    .hymn-list-item {
+      color: $clrSec200;
+      border-bottom: 1px solid $clrPrim300;
+    }
   }
 
   .footer-con {

@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import { databases } from '../lib/appwrite';
+import { useNavigate } from 'react-router-dom';
 
 function Content() {
   const [hymns, setHymns] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchHymns = async () => {
@@ -38,9 +40,13 @@ function Content() {
     <main className="hymn-list-con">
       <ul>
         {hymns.map((hymn) => (
-          <li className="hymn-list-item" key={hymn.$id}>
+          <li
+            className="hymn-list-item"
+            key={hymn.$id}
+            onClick={() => navigate(`/hymn/${hymn.$id}`)}
+            style={{ cursor: 'pointer' }}
+          >
             <h5>{hymn.title}</h5>
-            <p style={{ whiteSpace: 'pre-wrap' }}>{hymn.lyrics}</p>
           </li>
         ))}
       </ul>
