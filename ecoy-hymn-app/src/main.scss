@@ -55,68 +55,6 @@ body {
   flex-direction: column;
   min-height: 100vh;
 
-  .header-con {
-    width: 100%;
-    height: 120px;
-    background-color: $clrPrim200;
-    padding: $sp1;
-    background-color: $clrPrim100;
-
-    .title {
-      height: auto;
-    }
-
-    .header-con-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-right: $sp1;
-      margin-bottom: 1rem;
-
-      .menu-icon {
-        padding: 0.5rem;
-      }
-    }
-
-    .search-con {
-      width: 100%;
-      min-height: 46px;
-      max-height: 46px;
-      position: relative;
-
-      .input-field {
-        width: 100%;
-        padding: 14px;
-        border-radius: $br25;
-        border: none;
-        outline: none;
-        caret-color: $clrSec200;
-        transition: opacity 2s ease;
-        opacity: 1;
-        font-size: 1rem;
-        color: $clrSec100;
-
-        &::placeholder {
-          color: $clrPrim400;
-        }
-      }
-
-      .search-icon {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        right: 2px;
-        color: $clrSec200;
-        background-color: $clrPrim200;
-        // border: 2px solid $clrPrim100;
-        padding: 14px;
-        border-radius: $br50;
-        font-size: 1rem;
-        cursor: pointer;
-      }
-    }
-  }
-
   .hymn-list-con {
     overflow-y: auto;
     padding: 1rem;
@@ -127,24 +65,67 @@ body {
       border-bottom: 1px solid $clrPrim300;
     }
   }
+}
 
-  .footer-con {
-    // height: 60px;
-    background-color: $clrPrim100;
-    width: 100%;
-    padding-inline: $sp3;
-    padding-block: $sp1;
-    position: fixed;
-    bottom: 0;
+// HEADER  STYLE RULES
+.header-con {
+  width: 100%;
+  height: 120px;
+  background-color: $clrPrim200;
+  padding: $sp1;
+  background-color: $clrPrim100;
+
+  .title {
+    height: auto;
+  }
+
+  .header-con-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-right: $sp1;
+    margin-bottom: 1rem;
 
-    .icons {
-      color: $clrPrim300;
+    .menu-icon {
+      padding: 0.5rem;
     }
-    .home-icon {
+  }
+
+  .search-con {
+    width: 100%;
+    min-height: 46px;
+    max-height: 46px;
+    position: relative;
+
+    .input-field {
+      width: 100%;
+      padding: 14px;
+      border-radius: $br25;
+      border: none;
+      outline: none;
+      caret-color: $clrSec200;
+      transition: opacity 2s ease;
+      opacity: 1;
+      font-size: 1rem;
+      color: $clrSec100;
+
+      &::placeholder {
+        color: $clrPrim400;
+      }
+    }
+
+    .search-icon {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 2px;
       color: $clrSec200;
+      background-color: $clrPrim200;
+      // border: 2px solid $clrPrim100;
+      padding: 14px;
+      border-radius: $br50;
+      font-size: 1rem;
+      cursor: pointer;
     }
   }
 }
@@ -189,4 +170,80 @@ body {
 
 .sidebar.closed {
   left: -70%; /* Slide out */
+}
+
+// FOOTER STYLE RULES
+.footer-con {
+  // height: 60px;
+  background-color: $clrPrim100;
+  width: 100%;
+  padding-inline: $sp3;
+  padding-block: $sp1;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .icons {
+    color: $clrPrim300;
+  }
+  // .home-icon {
+  //   color: $clrSec200;
+  // }
+}
+
+// HYMN PAGE STYLES
+
+#hymn-page-con > * {
+  flex-shrink: 0;
+}
+
+#hymn-page-con {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  text-align: center;
+}
+
+// HYMN DISPLAY STYLES
+
+.hymn-title {
+  color: $clrSec200;
+  margin-top: 1rem;
+}
+
+.hymn-tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.hymn-tabs button {
+  background-color: #f0f0f0;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.hymn-tabs button.active {
+  background-color: #3c82f6;
+  color: #fff;
+  font-weight: 600;
+}
+
+.hymn-tabs button:hover {
+  background-color: #dbeafe;
+}
+
+.hymn-text {
+  padding: 1.2rem;
+  line-height: 1.6;
+  color: #fff;
+  font-size: 0.5rem;
+  white-space: pre-wrap;
 }
