@@ -63,6 +63,7 @@ body {
     .hymn-list-item {
       color: $clrSec200;
       border-bottom: 1px solid $clrPrim300;
+      margin-bottom: 1rem;
     }
   }
 }
@@ -130,6 +131,7 @@ body {
   }
 }
 
+// SIDEBAR STYLES
 .sidebar {
   position: fixed;
   top: 0;
