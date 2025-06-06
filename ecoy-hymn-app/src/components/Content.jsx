@@ -46,7 +46,7 @@ function Content() {
             onClick={() => navigate(`/hymn/${hymn.$id}`)}
             style={{ cursor: 'pointer' }}
           >
-            <h5>{hymn.title}</h5>
+            <h5 className="hymn-list-title">{hymn.title}</h5>
           </li>
         ))}
       </ul>
