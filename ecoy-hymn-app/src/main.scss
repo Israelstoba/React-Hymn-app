@@ -210,42 +210,68 @@ body {
 
 // HYMN DISPLAY STYLES
 
-.hymn-title {
-  color: $clrSec200;
-  margin-top: 1rem;
+// .hymn-list-title {
+//   color: $clrSec200;
+//   margin-top: 1rem;
+// }
+
+// .hymn-text {
+//   padding: 1.2rem;
+//   line-height: 1.6;
+//   color: #fff;
+//   font-size: 1rem;
+//   white-space: pre-wrap;
+// }
+
+// @media (min-width: 768px) {
+//   .hymn-title {
+//     font-size: 1.5rem;
+//   }
+
+//   .hymn-text {
+//     font-size: 1.125rem;
+//   }
+// }
+
+.hymn-display-con {
+  // padding: 1rem;
+  width: 100%;
+  margin: 0 auto;
+  flex: 1;
+  overflow-y: auto;
+
+  .hymn-title {
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: bold;
+    color: $clrSec200;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: $shadowSm;
+  }
+
+  .hymn-lyrics-wrapper {
+    padding: 1rem;
+    max-height: 50vh;
+    max-width: 800px;
+    overflow-y: auto;
+    margin-inline: auto;
+
+    .hymn-lyrics {
+      white-space: pre-wrap;
+      font-size: 1.5rem;
+      line-height: 1.7;
+      font-family: 'Segoe UI', sans-serif;
+      color: #fff;
+    }
+  }
 }
 
-.hymn-tabs {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 1rem;
-  gap: 1rem;
-}
-
-.hymn-tabs button {
-  background-color: #f0f0f0;
-  border: none;
-  padding: 0.5rem 1.5rem;
-  font-size: 1rem;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.hymn-tabs button.active {
-  background-color: #3c82f6;
-  color: #fff;
-  font-weight: 600;
-}
-
-.hymn-tabs button:hover {
-  background-color: #dbeafe;
-}
-
-.hymn-text {
-  padding: 1.2rem;
-  line-height: 1.6;
-  color: #fff;
-  font-size: 0.5rem;
-  white-space: pre-wrap;
+@media (width<=768px) {
+  .hymn-display-con {
+    .hymn-lyrics-wrapper {
+      padding: 1rem;
+      max-height: 70vh;
+    }
+  }
 }
