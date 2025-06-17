@@ -10,9 +10,9 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  overflow: hidden; /* Prevents scroll wobble */
-  touch-action: manipulation;
-  -webkit-overflow-scrolling: touch;
+  // overflow: hidden; /* Prevents scroll wobble */
+  // touch-action: manipulation;
+  // -webkit-overflow-scrolling: touch;
   background-color: $clrPrim200;
   color: $fff;
 }
