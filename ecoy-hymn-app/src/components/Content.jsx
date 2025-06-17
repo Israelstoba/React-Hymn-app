@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { databases, Query } from '../lib/appwrite';
-// import { Query } from 'appwrite';
 import { useNavigate } from 'react-router-dom';
 
 function Content() {
   const [hymns, setHymns] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -13,7 +13,7 @@ function Content() {
     const fetchAllHymns = async () => {
       let allHymns = [];
       let lastId = null;
-      const batchSize = 100; // fetch 100 per request
+      const batchSize = 100;
 
       try {
         while (true) {
@@ -23,8 +23,8 @@ function Content() {
           }
 
           const response = await databases.listDocuments(
-            '668336560036a2192b6c', // Database ID
-            '66833697001c8423ab57', // Collection ID
+            '668336560036a2192b6c',
+            '66833697001c8423ab57',
             queries
           );
 
@@ -49,25 +49,42 @@ function Content() {
     fetchAllHymns();
   }, []);
 
+  const filteredHymns = hymns.filter((hymn) =>
+    hymn.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   if (loading) return <p style={{ padding: '20px' }}>Loading hymns...</p>;
   if (error) return <p style={{ padding: '20px', color: 'red' }}>{error}</p>;
-  if (hymns.length === 0)
-    return <p style={{ padding: '20px' }}>No hymns available.</p>;
 
   return (
     <main className="hymn-list-con">
-      <ul>
-        {hymns.map((hymn) => (
-          <li
-            className="hymn-list-item"
-            key={hymn.$id}
-            onClick={() => navigate(`/hymn/${hymn.$id}`)}
-            style={{ cursor: 'pointer' }}
-          >
-            <h5 className="hymn-list-title">{hymn.title}</h5>
-          </li>
-        ))}
-      </ul>
+      {/* Search input at the top */}
+      <div className="search-con">
+        <input
+          type="text"
+          placeholder="Search hymns..."
+          className="input-field"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
+
+      {filteredHymns.length === 0 ? (
+        <p style={{ padding: '20px' }}>No hymns found.</p>
+      ) : (
+        <ul>
+          {filteredHymns.map((hymn) => (
+            <li
+              className="hymn-list-item"
+              key={hymn.$id}
+              onClick={() => navigate(`/hymn/${hymn.$id}`)}
+              style={{ cursor: 'pointer' }}
+            >
+              <h5 className="hymn-list-title">{hymn.title}</h5>
+            </li>
+          ))}
+        </ul>
+      )}
     </main>
   );
 }

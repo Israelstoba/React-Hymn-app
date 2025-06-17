@@ -57,11 +57,12 @@ body {
 
   .hymn-list-con {
     overflow-y: auto;
-    padding: 1rem;
     height: calc(100vh - 180px);
 
     .hymn-list-item {
       color: $clrSec200;
+      font-size: 1.2rem;
+      padding: 0.3rem 1rem;
       border-bottom: 1px solid $clrPrim300;
       margin-bottom: 1rem;
     }
@@ -71,7 +72,7 @@ body {
 // HEADER  STYLE RULES
 .header-con {
   width: 100%;
-  height: 120px;
+  // height: 120px;
   background-color: $clrPrim200;
   padding: $sp1;
   background-color: $clrPrim100;
@@ -85,50 +86,58 @@ body {
     justify-content: space-between;
     align-items: center;
     padding-right: $sp1;
-    margin-bottom: 1rem;
 
     .menu-icon {
       padding: 0.5rem;
     }
   }
+}
 
-  .search-con {
+.search-con {
+  width: 100%;
+  position: sticky;
+  top: 0;
+  background-color: $clrPrim100;
+  padding: 0 1rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .input-field {
     width: 100%;
-    min-height: 46px;
-    max-height: 46px;
-    position: relative;
+    padding: 0.5rem 1rem;
+    border-radius: $br25;
+    border: none;
+    outline: none;
+    caret-color: $clrSec200;
 
-    .input-field {
-      width: 100%;
-      padding: 14px;
-      border-radius: $br25;
-      border: none;
-      outline: none;
-      caret-color: $clrSec200;
-      transition: opacity 2s ease;
-      opacity: 1;
-      font-size: 1rem;
-      color: $clrSec100;
+    opacity: 1;
+    font-size: 1rem;
+    color: $clrSec100;
 
-      &::placeholder {
-        color: $clrPrim400;
-      }
-    }
-
-    .search-icon {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      right: 2px;
-      color: $clrSec200;
-      background-color: $clrPrim200;
-      // border: 2px solid $clrPrim100;
-      padding: 14px;
-      border-radius: $br50;
-      font-size: 1rem;
-      cursor: pointer;
+    &::placeholder {
+      color: $clrPrim400;
     }
   }
+
+  // .search-icon {
+  //   position: absolute;
+  //   top: 50%;
+  //   transform: translateY(-50%);
+  //   right: 2px;
+  //   color: $clrSec200;
+  //   background-color: $clrPrim200;
+  //   // border: 2px solid $clrPrim100;
+  //   padding: 14px;
+  //   border-radius: $br50;
+  //   font-size: 1rem;
+  //   cursor: pointer;
+  // }
+
+  // .close-search {
+  //   right: 50px;
+  //   background-color: transparent;
+  // }
 }
 
 // SIDEBAR STYLES
@@ -210,31 +219,7 @@ body {
 
 // HYMN DISPLAY STYLES
 
-// .hymn-list-title {
-//   color: $clrSec200;
-//   margin-top: 1rem;
-// }
-
-// .hymn-text {
-//   padding: 1.2rem;
-//   line-height: 1.6;
-//   color: #fff;
-//   font-size: 1rem;
-//   white-space: pre-wrap;
-// }
-
-// @media (min-width: 768px) {
-//   .hymn-title {
-//     font-size: 1.5rem;
-//   }
-
-//   .hymn-text {
-//     font-size: 1.125rem;
-//   }
-// }
-
 .hymn-display-con {
-  // padding: 1rem;
   width: 100%;
   margin: 0 auto;
   flex: 1;
@@ -245,9 +230,9 @@ body {
     text-align: center;
     font-weight: bold;
     color: $clrSec200;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    box-shadow: $shadowSm;
+    // margin-top: 1rem;
+    box-shadow: $shadowMd;
+    padding: 0.5rem 0.5rem 1rem;
   }
 
   .hymn-lyrics-wrapper {
@@ -260,8 +245,10 @@ body {
     .hymn-lyrics {
       white-space: pre-wrap;
       font-size: 1.5rem;
+      // font-family: 'Poppins', sans-serif;
+      font-family: 'Montserrat', sans-serif;
+      // font-family: 'Outfit', sans-serif;
       line-height: 1.7;
-      font-family: 'Segoe UI', sans-serif;
       color: #fff;
     }
   }
@@ -271,7 +258,7 @@ body {
   .hymn-display-con {
     .hymn-lyrics-wrapper {
       padding: 1rem;
-      max-height: 70vh;
+      max-height: 80vh;
     }
   }
 }

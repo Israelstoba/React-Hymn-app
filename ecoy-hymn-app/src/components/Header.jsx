@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faEllipsisVertical,
   faMagnifyingGlass,
+  faX,
 } from '@fortawesome/free-solid-svg-icons';
 
 function Header({ onMenuClick }) {
@@ -46,23 +47,6 @@ function Header({ onMenuClick }) {
           icon={faEllipsisVertical}
         />
       </div>
-
-      {location.pathname !== `/hymn/${params.id}` && (
-        <div className="search-con">
-          {isSearchVisible && (
-            <input
-              type="text"
-              className="input-field"
-              placeholder="Search Hymn..."
-            />
-          )}
-          <FontAwesomeIcon
-            onClick={handleSearchClick}
-            className="search-icon"
-            icon={faMagnifyingGlass}
-          />
-        </div>
-      )}
     </div>
   );
 }

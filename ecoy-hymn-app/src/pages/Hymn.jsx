@@ -6,6 +6,7 @@ import Footer from '../components/Footer';
 
 function Hymn() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState(''); // 👈 New state
 
   const toggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev);
@@ -14,13 +15,16 @@ function Hymn() {
   const closeSidebar = () => {
     setIsSidebarOpen(false);
   };
+
   return (
     <div id="hymn-wrapper">
-      <Header onMenuClick={toggleSidebar} />
+      <Header onMenuClick={toggleSidebar} onSearchChange={setSearchTerm} />{' '}
+      {/* 👈 Pass handler */}
       <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
-      <Content />
+      <Content searchTerm={searchTerm} /> {/* 👈 Pass searchTerm */}
       <Footer />
     </div>
   );
 }
+
 export default Hymn;
