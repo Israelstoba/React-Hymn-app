@@ -17,6 +17,30 @@ body {
   color: $fff;
 }
 
+.content-title {
+  color: $clrSec200;
+  margin-block: 1rem;
+}
+
+.card-txt {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  padding: 1rem 0.5rem;
+  border-radius: 10px;
+  background-color: $clrPrim300;
+  box-shadow: $shadowSm;
+}
+
+.txt {
+  font-size: 1.3rem;
+  line-height: 1.7;
+  color: #fff;
+  // font-family: 'Poppins', sans-serif;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/////Home Page Styles
+
 .home-con {
   display: grid;
   place-content: center;
@@ -121,25 +145,6 @@ body {
     }
   }
 
-  // .search-icon {
-  //   position: absolute;
-  //   top: 50%;
-  //   transform: translateY(-50%);
-  //   right: 2px;
-  //   color: $clrSec200;
-  //   background-color: $clrPrim200;
-  //   // border: 2px solid $clrPrim100;
-  //   padding: 14px;
-  //   border-radius: $br50;
-  //   font-size: 1rem;
-  //   cursor: pointer;
-  // }
-
-  // .close-search {
-  //   right: 50px;
-  //   background-color: transparent;
-  // }
-
   .input-wrapper {
     position: relative;
     display: inline-block;
@@ -192,6 +197,7 @@ body {
 
     .sidebar-links {
       padding-block: 1rem;
+      display: block;
       border-bottom: 1px solid $clrPrim200;
 
       .sidebar-link-icons {
@@ -294,6 +300,42 @@ body {
       // font-family: 'Poppins', sans-serif;
       font-family: 'Montserrat', sans-serif;
       // font-family: 'Outfit', sans-serif;
+    }
+  }
+}
+
+/////Mission  Page Styles/////////
+
+#mission-page-con {
+  .mission-content {
+    width: 100%;
+    max-width: 600px;
+    padding: 1rem 1rem 3rem;
+  }
+}
+/////About  Page Styles/////////
+
+#about-page-con {
+  .about-content {
+    width: 100%;
+    max-width: 600px;
+    padding: 1rem 1rem 3rem;
+
+    .card-txt {
+      margin-block: 1rem;
+      padding: 0.5rem;
+      color: $clrPrim100;
+      background-color: $clrSec200;
+    }
+
+    .built-by,
+    .powered-by {
+      text-align: center;
+      font-size: 0.9rem;
+    }
+    .powered-by {
+      color: $clrPrim400;
+      margin-top: 0.5rem;
     }
   }
 }

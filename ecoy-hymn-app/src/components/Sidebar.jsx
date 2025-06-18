@@ -7,6 +7,7 @@ import {
   faBullseye,
   faHeart,
 } from '@fortawesome/free-solid-svg-icons';
+import { Link, useLocation } from 'react-router-dom';
 
 function Sidebar({ isOpen, onClose }) {
   const sidebarRef = useRef();
@@ -33,24 +34,20 @@ function Sidebar({ isOpen, onClose }) {
 
         <ul className="sidebar-list">
           <li className="sidebar-links">
+            <FontAwesomeIcon className="sidebar-link-icons" icon={faHeart} />
+            Favourite Hymn
+          </li>
+          <Link to="/mission" className="sidebar-links">
+            <FontAwesomeIcon className="sidebar-link-icons" icon={faEye} />
+            Mission/Vision
+          </Link>
+          <Link to="/about" className="sidebar-links">
             <FontAwesomeIcon
               className="sidebar-link-icons"
               icon={faUsersViewfinder}
             />
             About
-          </li>
-          <li className="sidebar-links">
-            <FontAwesomeIcon className="sidebar-link-icons" icon={faHeart} />
-            Favourite Hymn
-          </li>
-          <li className="sidebar-links">
-            <FontAwesomeIcon className="sidebar-link-icons" icon={faEye} />
-            Vision/Mission
-          </li>
-          <li className="sidebar-links">
-            <FontAwesomeIcon className="sidebar-link-icons" icon={faBullseye} />
-            Mission
-          </li>
+          </Link>
         </ul>
       </div>
     </div>
