@@ -11,21 +11,6 @@ function Header({ onMenuClick }) {
   const location = useLocation();
   const params = useParams();
 
-  const [isSearchVisible, setIsSearchVisible] = useState(false);
-  const [hasClicked, setHasClicked] = useState(false);
-
-  useEffect(() => {
-    setHasClicked(false);
-    setIsSearchVisible(false);
-  }, [location.pathname]);
-
-  const handleSearchClick = () => {
-    if (!hasClicked) {
-      setIsSearchVisible(true);
-      setHasClicked(true);
-    }
-  };
-
   // Determine the header title based on the route
   const getHeaderTitle = () => {
     if (location.pathname === '/hymn') {

@@ -10,9 +10,9 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  // overflow: hidden; /* Prevents scroll wobble */
-  // touch-action: manipulation;
-  // -webkit-overflow-scrolling: touch;
+  overflow: hidden; /* Prevents scroll wobble */
+  touch-action: manipulation;
+  -webkit-overflow-scrolling: touch;
   background-color: $clrPrim200;
   color: $fff;
 }
@@ -99,9 +99,10 @@ body {
   top: 0;
   background-color: $clrPrim100;
   padding: 0 1rem 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin-bottom: 1rem;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
 
   .input-field {
     width: 100%;
@@ -138,6 +139,32 @@ body {
   //   right: 50px;
   //   background-color: transparent;
   // }
+
+  .input-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+  }
+
+  .input-field {
+    width: 100%;
+    padding-right: 30px; // room for clear button
+  }
+
+  .clear-btn {
+    position: absolute;
+    right: 0.1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+    cursor: pointer;
+    color: $fff;
+    padding: 8px;
+    background-color: $clrPrim200;
+    border-radius: 50%;
+  }
 }
 
 // SIDEBAR STYLES
@@ -219,6 +246,23 @@ body {
 
 // HYMN DISPLAY STYLES
 
+.mis-match-txt {
+  background-color: $clrPrim400;
+  width: 70%;
+  min-width: 250px;
+  margin-inline: auto;
+  color: $clrSec200;
+  font-size: 1.3rem;
+  text-align: center;
+  padding: 1rem;
+  border-radius: $br25;
+  box-shadow: $shadowMd;
+  opacity: 0;
+  position: relative;
+  top: 2rem;
+  transition: opacity 0.5s ease;
+}
+
 .hymn-display-con {
   width: 100%;
   margin: 0 auto;
@@ -226,7 +270,7 @@ body {
   overflow-y: auto;
 
   .hymn-title {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     text-align: center;
     font-weight: bold;
     color: $clrSec200;
@@ -244,12 +288,12 @@ body {
 
     .hymn-lyrics {
       white-space: pre-wrap;
-      font-size: 1.5rem;
+      font-size: 1.3rem;
+      line-height: 1.7;
+      color: #fff;
       // font-family: 'Poppins', sans-serif;
       font-family: 'Montserrat', sans-serif;
       // font-family: 'Outfit', sans-serif;
-      line-height: 1.7;
-      color: #fff;
     }
   }
 }

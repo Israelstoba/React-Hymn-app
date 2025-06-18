@@ -60,17 +60,33 @@ function Content() {
     <main className="hymn-list-con">
       {/* Search input at the top */}
       <div className="search-con">
-        <input
-          type="text"
-          placeholder="Search hymns..."
-          className="input-field"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
+        <div className="input-wrapper">
+          <input
+            type="text"
+            placeholder="Search hymns..."
+            className="input-field"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          {searchTerm && (
+            <button
+              className="clear-btn"
+              onClick={() => setSearchTerm('')}
+              aria-label="Clear search"
+            >
+              &times;
+            </button>
+          )}
+        </div>
       </div>
 
       {filteredHymns.length === 0 ? (
-        <p style={{ padding: '20px' }}>No hymns found.</p>
+        <p
+          className="mis-match-txt"
+          style={{ opacity: '1', transition: 'opacity 0.5s ease', top: '0' }}
+        >
+          ⚠️ Hymn match not found!
+        </p>
       ) : (
         <ul>
           {filteredHymns.map((hymn) => (
