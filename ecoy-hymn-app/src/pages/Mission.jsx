@@ -1,12 +1,10 @@
 // src/pages/About.jsx
 import React from 'react';
-import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 function Mission() {
   return (
     <div id="mission-page-con">
-      <Header />
       <div className="mission-content">
         <h2 className="mission-title content-title">Our Vission</h2>
         <p className="mission-txt card-txt">

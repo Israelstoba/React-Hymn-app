@@ -1,12 +1,10 @@
 // src/pages/About.jsx
 import React from 'react';
-import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 function About() {
   return (
     <div id="about-page-con">
-      <Header />
       <div className="about-content">
         <h2 className="content-title">About This App</h2>
         <p className="txt">

@@ -101,10 +101,6 @@ body {
   padding: $sp1;
   background-color: $clrPrim100;
 
-  .title {
-    height: auto;
-  }
-
   .header-con-top {
     display: flex;
     justify-content: space-between;
@@ -124,9 +120,6 @@ body {
   background-color: $clrPrim100;
   padding: 0 1rem 1rem;
   margin-bottom: 1rem;
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
 
   .input-field {
     width: 100%;
