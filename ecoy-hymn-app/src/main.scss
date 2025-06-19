@@ -225,6 +225,14 @@ body {
   .icons {
     color: $clrPrim300;
   }
+
+  .footer-icon-wrapper {
+    display: flex;
+    flex-direction: column;
+    .footer-icon-title {
+      color: $clrPrim300;
+    }
+  }
   // .home-icon {
   //   color: $clrSec200;
   // }

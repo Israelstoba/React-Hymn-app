@@ -6,6 +6,7 @@ import Hymn from './pages/Hymn';
 import HymnPage from './pages/HymnPage';
 import About from './pages/About';
 import Mission from './pages/Mission';
+import Favorite from './pages/Favorite';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 
@@ -34,6 +35,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/mission" element={<Mission />} />
+          <Route path="/favorite" element={<Favorite />} />
           <Route path="/hymn" element={<Hymn />} />
           <Route path="/hymn/:id" element={<HymnPage />} />
         </Routes>

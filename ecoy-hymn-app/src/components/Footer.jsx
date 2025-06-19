@@ -4,6 +4,8 @@ import {
   faHouseChimney,
   faHeart,
   faPenToSquare,
+  faBook,
+  faBookOpen,
 } from '@fortawesome/free-solid-svg-icons';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -18,19 +20,35 @@ function Footer() {
   return (
     <div className="footer-con">
       <Link to="/">
-        <FontAwesomeIcon className="home-icon icons" icon={faHouseChimney} />
+        <div className="footer-icon-wrapper">
+          <FontAwesomeIcon className="home-icon icons" icon={faHouseChimney} />
+          <small className="footer-icon-title">Home</small>
+        </div>
       </Link>
 
       <Link to="/hymn">
-        <FontAwesomeIcon className="icons" icon={faMusic} />
+        <div className="footer-icon-wrapper">
+          <FontAwesomeIcon className="icons" icon={faBookOpen} />
+          <small className="footer-icon-title">Hymns</small>
+        </div>
       </Link>
 
       {/* Show heart only on home and hymnPage */}
       {(currentPath === '/' || isHymnPage) && (
-        <FontAwesomeIcon className="icons" icon={faHeart} />
+        <Link to="/favorite">
+          <div className="footer-icon-wrapper">
+            <FontAwesomeIcon className="icons" icon={faHeart} />
+            <small className="footer-icon-title">Favorite</small>
+          </div>
+        </Link>
       )}
 
-      <FontAwesomeIcon className="icons" icon={faPenToSquare} />
+      <Link to="#">
+        <div className="footer-icon-wrapper">
+          <FontAwesomeIcon className="icons" icon={faPenToSquare} />
+          <small className="footer-icon-title">Note</small>
+        </div>
+      </Link>
     </div>
   );
 }
