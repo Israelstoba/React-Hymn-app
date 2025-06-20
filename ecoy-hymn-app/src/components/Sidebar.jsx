@@ -90,10 +90,10 @@ function Sidebar({ isOpen, onClose }) {
         />
 
         <ul className="sidebar-list">
-          <li className="sidebar-links">
+          <Link to="/favorite" className="sidebar-links" onClick={onClose}>
             <FontAwesomeIcon className="sidebar-link-icons" icon={faHeart} />
             Favourite Hymn
-          </li>
+          </Link>
           <Link to="/mission" className="sidebar-links" onClick={onClose}>
             <FontAwesomeIcon className="sidebar-link-icons" icon={faEye} />
             Mission/Vision

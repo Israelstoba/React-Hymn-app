@@ -1,0 +1,214 @@
+// src/pages/HymnPage.jsx
+import HymnDisplay from '../components/HymnDisplay';
+import Footer from '../components/Footer';
+
+function HymnPage() {
+  return (
+    <div id="hymn-page-con">
+      <HymnDisplay />
+      <Footer />
+    </div>
+  );
+}
+
+export default HymnPage;
+
+// src/components/HymnDisplay.jsx
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { databases } from '../lib/appwrite';
+import { useFavorites } from '../context/FavoriteContext';
+
+function HymnDisplay() {
+  const { id } = useParams();
+  const [hymn, setHymn] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const { setCurrentHymn } = useFavorites(); // ✅
+
+  useEffect(() => {
+    const fetchHymn = async () => {
+      try {
+        const res = await databases.getDocument(
+          '668336560036a2192b6c',
+          '66833697001c8423ab57',
+          id
+        );
+        setHymn(res);
+        setCurrentHymn(res); // ✅ make hymn available globally
+      } catch (err) {
+        console.error('Error fetching hymn:', err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchHymn();
+  }, [id]);
+
+  if (loading) return <p style={{ padding: '20px' }}>Loading...</p>;
+  if (!hymn) return <p style={{ padding: '20px' }}>Hymn not found.</p>;
+
+  return (
+    <div className="hymn-display-con">
+      <h2 className="hymn-title">{hymn.title}</h2>
+      <div className="hymn-lyrics-wrapper">
+        <pre className="hymn-lyrics">{hymn.lyrics}</pre>
+      </div>
+    </div>
+  );
+}
+
+export default HymnDisplay;
+
+import React from 'react';
+import Footer from '../components/Footer';
+import { useFavorites } from '../context/FavoriteContext';
+import { Link } from 'react-router-dom';
+
+function Favorite() {
+  const { favorites } = useFavorites();
+
+  return (
+    <div id="favorite-page-con">
+      <div className="favorites-wrapper">
+        <h2 className="favorites-title">My Favorites</h2>
+        <br />
+        {favorites.length === 0 ? (
+          <p className="no-favorites-text">No favorite hymns yet.</p>
+        ) : (
+          <ul className="favorites-list">
+            {favorites.map((hymn) => (
+              <li key={hymn.id} className="favorite-item">
+                <Link to={`/hymn/${hymn.id}`} className="favorite-link">
+                  {hymn.title || 'Untitled Hymn'}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+      <Footer />
+    </div>
+  );
+}
+
+export default Favorite;
+
+// src/components/Footer.jsx
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faHouseChimney,
+  faHeart,
+  faPenToSquare,
+  faBookOpen,
+} from '@fortawesome/free-solid-svg-icons';
+import { Link, useLocation } from 'react-router-dom';
+import { useFavorites } from '../context/FavoriteContext';
+
+function Footer() {
+  const location = useLocation();
+  const currentPath = location.pathname;
+
+  const isHymnPage =
+    currentPath.startsWith('/hymn/') && currentPath !== '/hymn';
+
+  const { currentHymn, toggleFavorite, isFavorite } = useFavorites();
+
+  const handleToggle = () => {
+    if (currentHymn) toggleFavorite(currentHymn);
+  };
+
+  return (
+    <div className="footer-con">
+      <Link to="/">
+        <div className="footer-icon-wrapper">
+          <FontAwesomeIcon className="home-icon icons" icon={faHouseChimney} />
+          <small className="footer-icon-title">Home</small>
+        </div>
+      </Link>
+
+      <Link to="/hymn">
+        <div className="footer-icon-wrapper">
+          <FontAwesomeIcon className="icons" icon={faBookOpen} />
+          <small className="footer-icon-title">Hymns</small>
+        </div>
+      </Link>
+
+      {isHymnPage && currentHymn && (
+        <li onClick={handleToggle} style={{ cursor: 'pointer' }}>
+          <div className="footer-icon-wrapper">
+            <FontAwesomeIcon
+              className="icons"
+              icon={faHeart}
+              style={{ color: isFavorite(currentHymn.id) ? 'red' : 'gray' }}
+            />
+            <small className="footer-icon-title">Favorite</small>
+          </div>
+        </li>
+      )}
+
+      <Link to="#">
+        <div className="footer-icon-wrapper">
+          <FontAwesomeIcon className="icons" icon={faPenToSquare} />
+          <small className="footer-icon-title">Note</small>
+        </div>
+      </Link>
+    </div>
+  );
+}
+
+export default Footer;
+
+import { createContext, useContext, useState, useEffect } from 'react';
+
+const FavoriteContext = createContext();
+
+export function FavoriteProvider({ children }) {
+  const [favorites, setFavorites] = useState(() => {
+    const stored = localStorage.getItem('favorites');
+    return stored ? JSON.parse(stored) : [];
+  });
+
+  const [currentHymn, setCurrentHymn] = useState(null); // ✅ Add this line
+
+  useEffect(() => {
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+  }, [favorites]);
+
+  const toggleFavorite = (hymn) => {
+    setFavorites((prev) => {
+      const isAlreadyFavorite = prev.some((fav) => fav.id === hymn.id);
+      if (isAlreadyFavorite) {
+        return prev.filter((fav) => fav.id !== hymn.id);
+      } else {
+        return [...prev, hymn];
+      }
+    });
+  };
+
+  const isFavorite = (id) => favorites.some((fav) => fav.id === id);
+
+  return (
+    <FavoriteContext.Provider
+      value={{
+        favorites,
+        toggleFavorite,
+        isFavorite,
+        currentHymn,
+        setCurrentHymn, // ✅ Expose this here
+      }}
+    >
+      {children}
+    </FavoriteContext.Provider>
+  );
+}
+
+export function useFavorites() {
+  return useContext(FavoriteContext);
+}
+
+i want you to make chages to any of the code i just gave
+
+
+
+
+

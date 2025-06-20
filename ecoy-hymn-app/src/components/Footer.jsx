@@ -1,21 +1,26 @@
+// src/components/Footer.jsx
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faMusic,
   faHouseChimney,
   faHeart,
   faPenToSquare,
-  faBook,
   faBookOpen,
 } from '@fortawesome/free-solid-svg-icons';
 import { Link, useLocation } from 'react-router-dom';
+import { useFavorites } from '../context/FavoriteContext';
 
 function Footer() {
   const location = useLocation();
   const currentPath = location.pathname;
 
-  // Check if it's the Hymn Display Page (e.g., /hymn/23)
   const isHymnPage =
     currentPath.startsWith('/hymn/') && currentPath !== '/hymn';
+
+  const { currentHymn, toggleFavorite, isFavorite } = useFavorites();
+
+  const handleToggle = () => {
+    if (currentHymn) toggleFavorite(currentHymn);
+  };
 
   return (
     <div className="footer-con">
@@ -33,14 +38,17 @@ function Footer() {
         </div>
       </Link>
 
-      {/* Show heart only on home and hymnPage */}
-      {(currentPath === '/' || isHymnPage) && (
-        <Link to="/favorite">
+      {isHymnPage && currentHymn && (
+        <li onClick={handleToggle} style={{ cursor: 'pointer' }}>
           <div className="footer-icon-wrapper">
-            <FontAwesomeIcon className="icons" icon={faHeart} />
+            <FontAwesomeIcon
+              className="icons"
+              icon={faHeart}
+              style={{ color: isFavorite(currentHymn.$id) ? 'red' : 'gray' }}
+            />
             <small className="footer-icon-title">Favorite</small>
           </div>
-        </Link>
+        </li>
       )}
 
       <Link to="#">

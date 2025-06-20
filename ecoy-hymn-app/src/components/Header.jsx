@@ -9,6 +9,8 @@ function Header({ onMenuClick }) {
   const getHeaderTitle = () => {
     if (location.pathname === '/hymn') {
       return 'Ecoy Hymnal List';
+    } else if (location.pathname === '/favorite') {
+      return 'Favorite Hymns';
     } else if (location.pathname.startsWith('/hymn/')) {
       return 'Hymn Details';
     } else {
