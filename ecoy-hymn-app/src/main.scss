@@ -346,17 +346,30 @@ body {
 //////Favorite Hymn Styles
 
 #favorite-page-con {
-  .favorites-wrapper {
-    .favorites-title {
-      text-align: center;
-      margin-top: 1rem;
-      font-size: 1rem;
-      max-width: 250px;
-      text-align: center;
-      margin-inline: auto;
-      color: $clrPrim100;
-      background-color: $clrSec300;
+  .favorite-wrapper {
+    .favorite-header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      margin: 1.5rem 0 0;
+
+      .favorite-title,
+      .clear-favorite-btn {
+        text-align: center;
+        font-size: 1rem;
+        max-width: 220px;
+        text-align: center;
+        color: $clrPrim100;
+        background-color: $clrSuccess200;
+        padding-block: 0.5rem;
+        margin-bottom: 0;
+      }
+      .clear-favorite-btn {
+        background-color: $clrWarning200;
+      }
     }
+
     .favorite-items {
       color: $clrPrim400;
       font-size: 1.2rem;
@@ -365,7 +378,7 @@ body {
       margin-bottom: 1rem;
     }
 
-    .no-favorites-tex {
+    .no-favorites-text {
       max-width: 250px;
       text-align: center;
       margin-inline: auto;

@@ -1,24 +1,32 @@
-// src/pages/Favorite.jsx
 import React from 'react';
 import Footer from '../components/Footer';
 import { useFavorites } from '../context/FavoriteContext';
 import { Link } from 'react-router-dom';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 function Favorite() {
-  const { favorites } = useFavorites();
+  const { favorites, clearFavorites } = useFavorites();
 
   return (
     <div id="favorite-page-con">
-      <div className="favorites-wrapper">
-        <h2 className="favorites-title card-txt">My Picks💞</h2>
+      <div className="favorite-wrapper">
+        <div className="favorite-header">
+          <h2 className="favorite-title card-txt">💞 My Picks</h2>
+          {favorites.length > 0 && (
+            <h2
+              className="clear-favorite-btn card-txt"
+              onClick={clearFavorites}
+            >
+              Clear All
+              {/* <FontAwesomeIcon icon={faTrash} /> */}
+            </h2>
+          )}
+        </div>
         <br />
         {favorites.length === 0 ? (
-          <p className="no-favorites-text card-txt">
-            {' '}
-            🤭 No favorite hymns yet.
-          </p>
+          <p className="no-favorites-text card-txt">🤭 No favorite hymn yet.</p>
         ) : (
-          <ul className="favorites-list">
+          <ul className="favorite-list">
             {favorites.map((hymn) => (
               <li key={hymn.$id} className="favorite-items">
                 <Link to={`/hymn/${hymn.$id}`} className="favorite-link">
