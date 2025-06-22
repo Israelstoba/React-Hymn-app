@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { databases, Query } from '../lib/appwrite';
 import { useNavigate } from 'react-router-dom';
-import { saveHymns, getAllHymns } from '../lib/hymnDB'; // ✅ New import
+import { saveHymns, getAllHymns } from '../lib/hymnDB'; // ✅ IndexedDB helpers
 
 function Content() {
   const [hymns, setHymns] = useState([]);
@@ -17,7 +17,7 @@ function Content() {
       const batchSize = 100;
 
       try {
-        // ✅ Try to fetch from Appwrite
+        // ✅ Try to fetch hymns from Appwrite in batches
         while (true) {
           const queries = [Query.limit(batchSize)];
           if (lastId) {
@@ -38,18 +38,21 @@ function Content() {
         }
 
         setHymns(allHymns);
-        await saveHymns(allHymns); // ✅ Save to IndexedDB
+        await saveHymns(allHymns); // ✅ Save to IndexedDB for offline access
       } catch (err) {
-        console.warn('Appwrite failed, trying IndexedDB...', err.message);
+        console.warn(
+          '⚠️ Appwrite fetch failed, using offline data...',
+          err.message
+        );
         try {
-          const offlineHymns = await getAllHymns(); // ✅ Fallback to IndexedDB
+          const offlineHymns = await getAllHymns(); // ✅ Load from IndexedDB
           if (offlineHymns.length) {
             setHymns(offlineHymns);
           } else {
-            setError('No hymns available offline yet.');
+            setError('⚠️ No hymns available offline yet.');
           }
         } catch (dbErr) {
-          console.error('Error reading from IndexedDB:', dbErr.message);
+          console.error('❌ Error reading from IndexedDB:', dbErr.message);
           setError('Offline storage not available.');
         }
       } finally {
@@ -69,7 +72,7 @@ function Content() {
 
   return (
     <main className="hymn-list-con">
-      {/* Search input at the top */}
+      {/* 🔍 Search Input */}
       <div className="search-con">
         <div className="input-wrapper">
           <input
