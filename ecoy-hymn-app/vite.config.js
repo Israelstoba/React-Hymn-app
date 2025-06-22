@@ -1,3 +1,4 @@
+// vite.config.js
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
@@ -30,30 +31,38 @@ export default defineConfig({
         ],
       },
       workbox: {
+        globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
         runtimeCaching: [
           {
-            // Cache Appwrite API calls for hymns
-            urlPattern:
-              /^https:\/\/cloud\.appwrite\.io\/v1\/databases\/.*\/documents\/.*$/,
+            urlPattern: /^https:\/\/(.*)\.appwrite\.io\/v1\/databases/, // Cache Appwrite hymn fetches
             handler: 'NetworkFirst',
             options: {
-              cacheName: 'appwrite-api-cache',
+              cacheName: 'appwrite-data',
               expiration: {
-                maxEntries: 100,
+                maxEntries: 50,
                 maxAgeSeconds: 60 * 60 * 24 * 7, // 7 days
               },
-              networkTimeoutSeconds: 10,
             },
           },
           {
-            // Cache static CDN assets like fonts/images
-            urlPattern: /\.(?:js|css|woff2?|png|svg|jpg|jpeg|gif|ico)$/,
-            handler: 'CacheFirst',
+            urlPattern: ({ request }) => request.destination === 'document',
+            handler: 'NetworkFirst',
             options: {
-              cacheName: 'static-resources',
+              cacheName: 'pages',
               expiration: {
-                maxEntries: 50,
-                maxAgeSeconds: 60 * 60 * 24 * 30, // 30 days
+                maxEntries: 20,
+              },
+            },
+          },
+          {
+            urlPattern: ({ request }) =>
+              request.destination === 'script' ||
+              request.destination === 'style',
+            handler: 'StaleWhileRevalidate',
+            options: {
+              cacheName: 'assets',
+              expiration: {
+                maxEntries: 30,
               },
             },
           },
