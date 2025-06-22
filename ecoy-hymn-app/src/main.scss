@@ -369,6 +369,7 @@ body {
       .clear-favorite-btn {
         color: $fff;
         background-color: $clrWarning200;
+        cursor: pointer;
 
         .trash-can {
           margin-left: 0.5rem;
