@@ -10,9 +10,9 @@ export default defineConfig({
       includeAssets: ['favicon.svg', 'robots.txt', 'apple-touch-icon.png'],
       manifest: {
         name: 'Ecoy Hymns',
-        short_name: 'Hymnal',
+        short_name: 'Ecoy Hymns',
         description: 'A modern offline hymnal App.',
-        start_url: '/',
+        start_url: '/hymn',
         display: 'standalone',
         background_color: '#2b2640',
         theme_color: '#2c3e50',
