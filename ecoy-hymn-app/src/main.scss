@@ -360,13 +360,19 @@ body {
         font-size: 1rem;
         max-width: 220px;
         text-align: center;
-        color: $clrPrim100;
-        background-color: $clrSuccess200;
+        color: $clrPrim200;
+        background-color: $clrSuccess300;
+        box-shadow: $shadowMd;
         padding-block: 0.5rem;
         margin-bottom: 0;
       }
       .clear-favorite-btn {
+        color: $fff;
         background-color: $clrWarning200;
+
+        .trash-can {
+          margin-left: 0.5rem;
+        }
       }
     }
 

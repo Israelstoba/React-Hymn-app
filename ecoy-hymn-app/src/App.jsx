@@ -1,6 +1,6 @@
 import './main.scss';
 import { Routes, Route, useLocation } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Home from './pages/Home';
 import Hymn from './pages/Hymn';
 import HymnPage from './pages/HymnPage';
@@ -9,6 +9,9 @@ import Mission from './pages/Mission';
 import Favorite from './pages/Favorite';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
+
+// PWA: Register service worker (optional notification)
+import { registerSW } from 'virtual:pwa-register';
 
 function App() {
   const location = useLocation();
@@ -22,8 +25,21 @@ function App() {
     setIsSidebarOpen(false);
   };
 
-  // ✅ Only show Header if not on Home page
   const showHeader = location.pathname !== '/';
+
+  // ✅ Register PWA service worker
+  useEffect(() => {
+    const updateSW = registerSW({
+      onNeedRefresh() {
+        if (confirm('New update available. Reload to update?')) {
+          updateSW(true);
+        }
+      },
+      onOfflineReady() {
+        console.log('App is ready to work offline');
+      },
+    });
+  }, []);
 
   return (
     <div className="app-wrapper">
