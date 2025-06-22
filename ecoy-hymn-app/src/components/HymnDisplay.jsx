@@ -3,12 +3,13 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { databases } from '../lib/appwrite';
 import { useFavorites } from '../context/FavoriteContext';
+import { getHymnById } from '../lib/hymnDB'; // ✅
 
 function HymnDisplay() {
   const { id } = useParams();
   const [hymn, setHymn] = useState(null);
   const [loading, setLoading] = useState(true);
-  const { setCurrentHymn } = useFavorites(); // ✅
+  const { setCurrentHymn } = useFavorites();
 
   useEffect(() => {
     const fetchHymn = async () => {
@@ -19,13 +20,25 @@ function HymnDisplay() {
           id
         );
         setHymn(res);
-        setCurrentHymn(res); // ✅ make hymn available globally
+        setCurrentHymn(res);
       } catch (err) {
-        console.error('Error fetching hymn:', err.message);
+        console.warn('Appwrite failed, trying IndexedDB...');
+        try {
+          const offlineHymn = await getHymnById(id);
+          if (offlineHymn) {
+            setHymn(offlineHymn);
+            setCurrentHymn(offlineHymn);
+          } else {
+            console.error('Hymn not found in IndexedDB either.');
+          }
+        } catch (dbErr) {
+          console.error('Error fetching from IndexedDB:', dbErr.message);
+        }
       } finally {
         setLoading(false);
       }
     };
+
     fetchHymn();
   }, [id]);
 
